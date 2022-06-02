@@ -1,10 +1,8 @@
 package org.jabref.logic.citationstyle;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.jabref.logic.formatter.bibtexfields.RemoveNewlinesFormatter;
 import org.jabref.model.entry.BibEntry;
@@ -124,10 +122,10 @@ public class CSLAdapter {
         }
 
         @Override
-        public String[] getIds() {
+        public Collection<String> getIds() {
             return data.stream()
                        .map(entry -> entry.getCitationKey().orElse(""))
-                       .toArray(String[]::new);
+                    .collect(Collectors.toList());
         }
     }
 }
